@@ -40,7 +40,7 @@ class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, blank=True, related_name="books")
     is_bestselling = models.BooleanField(default=False)
     slug = models.SlugField(default="", blank=True, null=False, db_index=True)
-    published_countries = models.ManyToManyField(Country)
+    published_countries = models.ManyToManyField(Country, null=False, related_name="books")
     
     def get_absolute_url(self):
         return reverse("book-detail", args=[self.slug])
